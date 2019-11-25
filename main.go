@@ -39,7 +39,7 @@ func main() {
 		fmt.Printf("%v \n", toolVer)
 		return
 	}
-	fmt.Println("===== Hornbill Right Search Utility v" + toolVer + " =====")
+	fmt.Println("===== Hornbill Role Search Utility v" + toolVer + " =====")
 
 	//Try to login to the server if not succesfully exit
 	success := login()
