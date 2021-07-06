@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	toolVer = "1.0.0"
+	toolVer = "1.0.1"
 )
 
 var (
@@ -43,7 +43,7 @@ func main() {
 
 	//Try to login to the server if not succesfully exit
 	success := login()
-	if success != true {
+	if !success {
 		log.Fatal("Could not login to your Hornbill instance.")
 	}
 	defer logout()
@@ -66,7 +66,7 @@ func main() {
 			//RightA
 			for _, sysRight := range role.SysRights.Params.RightA.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -77,7 +77,7 @@ func main() {
 			//RightB
 			for _, sysRight := range role.SysRights.Params.RightB.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -88,7 +88,7 @@ func main() {
 			//RightC
 			for _, sysRight := range role.SysRights.Params.RightC.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -99,7 +99,7 @@ func main() {
 			//RightD
 			for _, sysRight := range role.SysRights.Params.RightD.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -110,7 +110,7 @@ func main() {
 			//RightE
 			for _, sysRight := range role.SysRights.Params.RightE.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -121,7 +121,7 @@ func main() {
 			//RightF
 			for _, sysRight := range role.SysRights.Params.RightF.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -132,7 +132,7 @@ func main() {
 			//RightG
 			for _, sysRight := range role.SysRights.Params.RightG.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -143,7 +143,7 @@ func main() {
 			//RightH
 			for _, sysRight := range role.SysRights.Params.RightH.Rights {
 				rightName := sysRight.XMLName.Local
-				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+				if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 					appStr := ""
 					if role.Application != "" {
 						appStr = " in Application [" + role.Application + "]"
@@ -157,7 +157,7 @@ func main() {
 			for _, appRight := range role.AppRights.Params.Application {
 				for _, sysRight := range appRight.RightA.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"
@@ -168,7 +168,7 @@ func main() {
 				//RightB
 				for _, sysRight := range appRight.RightB.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"
@@ -179,7 +179,7 @@ func main() {
 				//RightC
 				for _, sysRight := range appRight.RightC.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"
@@ -190,7 +190,7 @@ func main() {
 				//RightD
 				for _, sysRight := range appRight.RightD.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"
@@ -201,7 +201,7 @@ func main() {
 				//RightE
 				for _, sysRight := range appRight.RightE.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"
@@ -212,7 +212,7 @@ func main() {
 				//RightF
 				for _, sysRight := range appRight.RightF.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"
@@ -223,7 +223,7 @@ func main() {
 				//RightG
 				for _, sysRight := range appRight.RightG.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"
@@ -234,7 +234,7 @@ func main() {
 				//RightH
 				for _, sysRight := range appRight.RightH.Rights {
 					rightName := sysRight.XMLName.Local
-					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value == true {
+					if strings.Contains(strings.ToLower(rightName), strings.ToLower(right)) && sysRight.Value {
 						appStr := ""
 						if role.Application != "" {
 							appStr = " in Application [" + role.Application + "]"

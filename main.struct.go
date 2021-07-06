@@ -108,11 +108,3 @@ type stateStruct struct {
 	Code     string `xml:"code"`
 	ErrorRet string `xml:"error"`
 }
-
-type foundRights struct {
-	Type    string
-	Section string
-	App     string
-	Role    string
-	Right   string
-}
