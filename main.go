@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	toolVer = "1.0.1"
+	toolVer = "1.1.0"
 )
 
 var (
@@ -22,6 +22,7 @@ var (
 	instanceName string
 	userName     string
 	userPassword string
+	passCode     string
 	version      bool
 	espXmlmc     *apiLib.XmlmcInstStruct
 	roleData     Roles
@@ -32,6 +33,7 @@ func main() {
 	flag.StringVar(&instanceName, "instance", "", "The instance name")
 	flag.StringVar(&userName, "u", "", "The admin username")
 	flag.StringVar(&userPassword, "p", "", "The admin password")
+	flag.StringVar(&passCode, "s", "", "The support passcode")
 	flag.BoolVar(&version, "version", false, "Returns the version and ends")
 	flag.Parse()
 	//-- Used for Building
@@ -302,13 +304,22 @@ func getRoleAppRights(role string) AppRights {
 	return xmlRespon
 }
 
-//login - Starts a new ESP session
+// login - Starts a new ESP session
 func login() bool {
 
 	espXmlmc = apiLib.NewXmlmcInstance(instanceName)
-	espXmlmc.SetParam("userId", userName)
-	espXmlmc.SetParam("password", base64.StdEncoding.EncodeToString([]byte(userPassword)))
-	XMLLogin, err := espXmlmc.Invoke("session", "userLogon")
+	var (
+		XMLLogin string
+		err      error
+	)
+	if passCode != "" {
+		espXmlmc.SetParam("passcode", passCode)
+		XMLLogin, err = espXmlmc.Invoke("session", "supportPasscodeLogon")
+	} else {
+		espXmlmc.SetParam("userId", userName)
+		espXmlmc.SetParam("password", base64.StdEncoding.EncodeToString([]byte(userPassword)))
+		XMLLogin, err = espXmlmc.Invoke("session", "userLogon")
+	}
 	if err != nil {
 		color.Red("Error returned when attempting to run Login API call.")
 		fmt.Println(err)
@@ -329,7 +340,7 @@ func login() bool {
 	return true
 }
 
-//logout - Log out of ESP
+// logout - Log out of ESP
 func logout() {
 	espXmlmc.Invoke("session", "userLogoff")
 }

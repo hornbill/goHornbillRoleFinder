@@ -9,6 +9,7 @@ There are a number of MANDATORY command line parameters when running this tool:
 - **instance** : The instance name (case sensitive)
 - **u** : The username to use when authenticating against the instance (admin rights required)
 - **p** : The password to use when authenticating the above user
+- **s** : A support passcode for authentication. When using this, a username and password is not required.
 - **right** : The right name to search for. This can be a partial or full right name
 
 ## Example Commmand Line Entry
@@ -19,7 +20,7 @@ To search all roles for the right `administerServiceDesk`:
 
 To search for all roles for rights containing the string `create`
 
-- `rightFinder.exe -u=admin -p=password -instance=instanceid -right=create`
+- `rightFinder.exe -s="your-support-pass-code" -instance=instanceid -right=create`
 
 ## Example Results
 
